@@ -21,6 +21,7 @@ const SignUp = () => {
     e.preventDefault();
     setError("");
 
+    // validation
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match!");
       return;
@@ -32,7 +33,19 @@ const SignUp = () => {
     }
 
     try {
+      // ✅ Create account (Firebase / custom auth)
       await signUp(formData.email, formData.password);
+
+      // ✅ Save profile info into localStorage
+      const userProfiles = JSON.parse(localStorage.getItem("userProfiles") || "{}");
+      userProfiles[formData.email] = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+      };
+      localStorage.setItem("userProfiles", JSON.stringify(userProfiles));
+
+      // redirect to home/profile
       navigate("/");
     } catch (err) {
       console.error("Sign up error:", err.message);
@@ -49,8 +62,9 @@ const SignUp = () => {
   };
 
   return (
-    <div className="mt-5 min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 via-white to-orange-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="text-black mt-5 min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 to-orange-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
+        {/* Header */}
         <div className="text-center">
           <h2 className="mt-2 text-3xl font-bold text-gray-900">
             Join{" "}
@@ -63,6 +77,7 @@ const SignUp = () => {
           </p>
         </div>
 
+        {/* Card */}
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
           <div className="px-10 py-8">
             <form className="space-y-6" onSubmit={handleSubmit}>
@@ -70,6 +85,7 @@ const SignUp = () => {
                 <p className="text-red-500 text-sm text-center">{error}</p>
               )}
 
+              {/* First & Last Name */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label
@@ -107,6 +123,7 @@ const SignUp = () => {
                 </div>
               </div>
 
+              {/* Email */}
               <div>
                 <label
                   htmlFor="email"
@@ -125,6 +142,7 @@ const SignUp = () => {
                 />
               </div>
 
+              {/* Password */}
               <div>
                 <label
                   htmlFor="password"
@@ -143,6 +161,7 @@ const SignUp = () => {
                 />
               </div>
 
+              {/* Confirm Password */}
               <div>
                 <label
                   htmlFor="confirmPassword"
@@ -161,6 +180,7 @@ const SignUp = () => {
                 />
               </div>
 
+              {/* Terms */}
               <div className="flex items-center">
                 <input
                   id="agreeToTerms"
@@ -186,6 +206,7 @@ const SignUp = () => {
                 </label>
               </div>
 
+              {/* Button */}
               <button
                 type="submit"
                 className="w-full py-3 px-4 text-sm font-medium text-white rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 hover:opacity-90"
@@ -195,6 +216,7 @@ const SignUp = () => {
             </form>
           </div>
 
+          {/* Footer */}
           <div className="px-10 py-5 bg-gray-50 border-t border-gray-200 text-center">
             <p className="text-sm text-gray-600">
               Already have an account?{" "}

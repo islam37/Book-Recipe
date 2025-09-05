@@ -32,7 +32,7 @@ const Login = () => {
   };
 
   return (
-    <div className="mt-5 min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 via-white to-orange-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="mt-5 min-h-screen text-black flex items-center justify-center bg-gradient-to-br from-amber-50 via-white to-orange-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="absolute top-10 right-10 w-24 h-24 bg-amber-200/30 rounded-full blur-xl"></div>
       <div className="absolute bottom-10 left-10 w-32 h-32 bg-orange-200/20 rounded-full blur-xl"></div>
       
