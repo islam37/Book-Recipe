@@ -54,7 +54,7 @@ const router = createBrowserRouter([
         Component: MyRecipes,
       },
       {
-        path: "/recipes/:id",   // ✅ dynamic route for recipe details
+        path: "/recipes/:id",   // dynamic route for recipe details
         Component: RecipeDetails,
       },
     ],
