@@ -10,6 +10,7 @@ import AddRecipes from "../components/AddRecipes";
 import AllRecipes from "../components/AllRecipes";
 import MyRecipes from "../components/MyRecipes";
 import RecipeDetails from "../components/RecipeDetails"; // ✅ import details page
+import PrivateRoute from "../components/Context/PrivateRouter";
 
 const router = createBrowserRouter([
   {
@@ -43,15 +44,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-recipes",
-        Component: AddRecipes
+        element: (
+          <PrivateRoute>
+            <AddRecipes />
+          </PrivateRoute>
+        )
       },
       {
         path: "/profile",
-        Component: Profile,
+       element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        )
       },
       {
         path: "/my-recipes",
-        Component: MyRecipes,
+         element: (
+          <PrivateRoute>
+            <MyRecipes />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/recipes/:id",   // dynamic route for recipe details
