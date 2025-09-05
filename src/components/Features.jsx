@@ -179,7 +179,7 @@ const Features = ({ showHeader = true, showViewAllButton = true }) => {
             {showViewAllButton && (
               <div className="text-center mt-12">
                 <Link 
-                  to="/recipes" 
+                  to="/all-recipes" 
                   onClick={() => window.scrollTo(0, 0)}  
                   className="inline-flex items-center px-6 py-3 border border-amber-500 text-amber-500 font-medium rounded-full hover:bg-amber-50 transition-colors"
                 >
