@@ -12,7 +12,7 @@ export default function RecipeDetails() {
     const fetchRecipe = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://localhost:3000/recipes/${id}`);
+        const response = await fetch(`https://recipe-book-server-woad-alpha.vercel.app/recipes/${id}`);
         
         if (!response.ok) {
           // More specific error handling

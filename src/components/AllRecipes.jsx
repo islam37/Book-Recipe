@@ -8,7 +8,7 @@ export default function AllRecipes() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/recipes")
+    fetch("https://recipe-book-server-woad-alpha.vercel.app/recipes")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch recipes");
@@ -102,7 +102,7 @@ export function RecipeDetails() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/recipes/${id}`)
+    fetch(`https://recipe-book-server-woad-alpha.vercel.app/recipes/${id}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch recipe details");

@@ -22,7 +22,7 @@ export default function MyRecipes() {
   // Fetch only the recipes added by the current user
   const fetchRecipes = async () => {
     try {
-      const res = await fetch("http://localhost:3000/recipes");
+      const res = await fetch("https://recipe-book-server-woad-alpha.vercel.app/recipes");
       const data = await res.json();
       const userRecipes = data.filter((r) => r.userEmail === user?.email);
       setRecipes(userRecipes);
@@ -48,7 +48,7 @@ export default function MyRecipes() {
 
     if (confirm.isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:3000/recipes/${id}`, { 
+        const response = await fetch(`https://recipe-book-server-woad-alpha.vercel.app/recipes/${id}`, { 
           method: "DELETE" 
         });
         
@@ -97,7 +97,7 @@ export default function MyRecipes() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3000/recipes/${editingRecipe}`, {
+      const res = await fetch(`https://recipe-book-server-woad-alpha.vercel.app/recipes/${editingRecipe}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
