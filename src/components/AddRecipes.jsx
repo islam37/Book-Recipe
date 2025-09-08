@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../components/Context/AuthContext"; // assuming you already have Firebase Auth Context
+import API_BASE from "../config";
 
 export default function AddRecipe() {
   const { user } = useContext(AuthContext); // get logged-in user info
@@ -42,7 +43,7 @@ export default function AddRecipe() {
     };
 
     try {
-      const res = await fetch("https://recipe-book-server-woad-alpha.vercel.app/recipes", {
+      const res = await fetch(`${API_BASE}/recipes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(recipeData),

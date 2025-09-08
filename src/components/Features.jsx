@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router';
-
+import API_BASE from "../config";
 const Features = ({ showHeader = true, showViewAllButton = true }) => {
   const [activeRecipe, setActiveRecipe] = useState(null);
   const [recipes, setRecipes] = useState([]);
@@ -8,7 +8,7 @@ const Features = ({ showHeader = true, showViewAllButton = true }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("https://recipe-book-server-woad-alpha.vercel.app/recipes")
+    fetch(`${API_BASE}/recipes`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch recipes");
@@ -198,3 +198,4 @@ const Features = ({ showHeader = true, showViewAllButton = true }) => {
 };
 
 export default Features;
+

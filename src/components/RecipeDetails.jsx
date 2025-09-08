@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router";
+import API_BASE from "../config";
 
 export default function RecipeDetails() {
   const { id } = useParams();
@@ -12,7 +13,7 @@ export default function RecipeDetails() {
     const fetchRecipe = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`https://recipe-book-server-woad-alpha.vercel.app/recipes/${id}`);
+        const response = await fetch(`${API_BASE}/recipes/${id}`);
         
         if (!response.ok) {
           // More specific error handling

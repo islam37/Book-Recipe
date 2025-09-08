@@ -9,12 +9,6 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
-  // Debug: Check if logout function exists
-  useEffect(() => {
-    console.log('Navbar mounted - logout function:', typeof logout);
-    console.log('Current user:', user);
-  }, [logout, user]);
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -24,24 +18,18 @@ const Navbar = () => {
   }, []);
 
   const handleLogout = async () => {
-    console.log('Logout button clicked');
-    
     if (typeof logout !== 'function') {
       console.error('Logout function is not available');
       return;
     }
 
     try {
-      console.log('Calling logout function...');
       await logout();
-      console.log('Logout successful');
-      
       setIsMobileMenuOpen(false);
       setIsProfileDropdownOpen(false);
       navigate('/');
     } catch (error) {
       console.error('Logout error:', error);
-      // Fallback: clear local storage and redirect
       localStorage.removeItem('userProfiles');
       navigate('/');
       window.location.reload();
@@ -74,9 +62,16 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             <NavLink to="/" isScrolled={isScrolled} onClick={closeAllMenus}>Home</NavLink>
-            <NavLink to="/all-recipes" isScrolled={isScrolled} onClick={closeAllMenus}>All Recipes</NavLink>
-            <NavLink to="/add-recipes" isScrolled={isScrolled} onClick={closeAllMenus}>Add Recipes</NavLink>
-            <NavLink to="/my-recipes" isScrolled={isScrolled} onClick={closeAllMenus}>MyRecipes</NavLink>
+            
+            {/* Show these links only if logged in */}
+            {user && (
+              <>
+                <NavLink to="/all-recipes" isScrolled={isScrolled} onClick={closeAllMenus}>All Recipes</NavLink>
+                <NavLink to="/add-recipes" isScrolled={isScrolled} onClick={closeAllMenus}>Add Recipes</NavLink>
+                <NavLink to="/my-recipes" isScrolled={isScrolled} onClick={closeAllMenus}>My Recipes</NavLink>
+              </>
+            )}
+
             <NavLink to="/about" isScrolled={isScrolled} onClick={closeAllMenus}>About</NavLink>
             
             <div className="ml-4 flex items-center space-x-2">
@@ -156,9 +151,16 @@ const Navbar = () => {
           <div className="md:hidden mt-4 py-4 bg-white rounded-lg shadow-lg animate-fadeIn">
             <div className="flex flex-col space-y-3">
               <MobileNavLink to="/" onClick={() => setIsMobileMenuOpen(false)}>Home</MobileNavLink>
-              <MobileNavLink to="/all-recipes" onClick={() => setIsMobileMenuOpen(false)}>Recipes</MobileNavLink>
-              <MobileNavLink to="/add-recipes" onClick={() => setIsMobileMenuOpen(false)}>Add Recipes</MobileNavLink>
-              <MobileNavLink to="/my-recipes" onClick={() => setIsMobileMenuOpen(false)}>My Recipes</MobileNavLink>
+
+              {/* Show only if logged in */}
+              {user && (
+                <>
+                  <MobileNavLink to="/all-recipes" onClick={() => setIsMobileMenuOpen(false)}>All Recipes</MobileNavLink>
+                  <MobileNavLink to="/add-recipes" onClick={() => setIsMobileMenuOpen(false)}>Add Recipes</MobileNavLink>
+                  <MobileNavLink to="/my-recipes" onClick={() => setIsMobileMenuOpen(false)}>My Recipes</MobileNavLink>
+                </>
+              )}
+
               <MobileNavLink to="/about" onClick={() => setIsMobileMenuOpen(false)}>About</MobileNavLink>
               
               <div className="pt-4 flex flex-col space-y-3 border-t border-gray-100">

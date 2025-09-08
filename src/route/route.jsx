@@ -9,7 +9,7 @@ import Profile from "../components/Profile";
 import AddRecipes from "../components/AddRecipes";
 import AllRecipes from "../components/AllRecipes";
 import MyRecipes from "../components/MyRecipes";
-import RecipeDetails from "../components/RecipeDetails"; // ✅ import details page
+import RecipeDetails from "../components/RecipeDetails"; 
 import PrivateRoute from "../components/Context/PrivateRouter";
 
 const router = createBrowserRouter([

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../components/Context/AuthContext";
-
+import API_BASE from "../config";
 export default function MyRecipes() {
   const { user } = useContext(AuthContext);
   const [recipes, setRecipes] = useState([]);
@@ -22,7 +22,7 @@ export default function MyRecipes() {
   // Fetch only the recipes added by the current user
   const fetchRecipes = async () => {
     try {
-      const res = await fetch("https://recipe-book-server-woad-alpha.vercel.app/recipes");
+      const res = await fetch(`${API_BASE}/recipes`);
       const data = await res.json();
       const userRecipes = data.filter((r) => r.userEmail === user?.email);
       setRecipes(userRecipes);
@@ -48,8 +48,8 @@ export default function MyRecipes() {
 
     if (confirm.isConfirmed) {
       try {
-        const response = await fetch(`https://recipe-book-server-woad-alpha.vercel.app/recipes/${id}`, { 
-          method: "DELETE" 
+        const response = await fetch(`${API_BASE}/recipes/${id}`, {
+          method: "DELETE"
         });
         
         if (response.ok) {
@@ -97,7 +97,7 @@ export default function MyRecipes() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`https://recipe-book-server-woad-alpha.vercel.app/recipes/${editingRecipe}`, {
+      const res = await fetch(`${API_BASE}/recipes/${editingRecipe}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
