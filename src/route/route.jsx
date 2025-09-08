@@ -67,7 +67,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/recipes/:id",   // dynamic route for recipe details
+        path: "/recipes/:id",   
         Component: RecipeDetails,
       },
     ],

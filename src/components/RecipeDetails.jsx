@@ -80,7 +80,7 @@ export default function RecipeDetails() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg mt-24">
+    <div className=" text black max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg mt-24">
       {/* Image with error handling */}
       <div className="w-full h-64 mb-4 rounded-lg overflow-hidden bg-gray-200 flex items-center justify-center">
         {recipe.image && !imageError ? (
